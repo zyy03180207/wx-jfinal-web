@@ -186,18 +186,34 @@ public class AdminController extends BaseController {
 					return;
 				}
 				AdminUser adminUser = AdminUser.dao.findUserByName(username);
-				if (adminUser.getInt("id") != Integer.valueOf(id)) {
+				if (adminUser != null && adminUser.getInt("id") != Integer.valueOf(id)) {
 					this.setMesg("该登陆名已被使用");
 					return;
 				}
 				AdminUser user = new AdminUser();
-				boolean s = user.set("id", id).set("username", username).set("phone", phone).set("email", email).update();
+				boolean s = user.set("id", id).set("username", username).set("phone", phone).set("email", email)
+						.update();
 				if (s) {
 					AdminUserRole.dao.updUserRoleByUid(Integer.valueOf(id), Integer.valueOf(roleId));
 					this.setMesg(true, "修改成功", true);
 				} else {
 					this.setMesg("修改失败");
 				}
+			}
+		} catch (Exception e) {
+			this.setMesg(e.getCause().getMessage());
+		}
+	}
+
+	public void adminUpPass() {
+		try {
+			String id = this.getPara("id");
+			AdminUser adminUser = new AdminUser();
+			boolean s = adminUser.set("password", md5("12345678")).set("id", Integer.valueOf(id)).update();
+			if (s) {
+				this.setMesg(true, "初始化成功", true);
+			} else {
+				this.setMesg("初始化失败");
 			}
 		} catch (Exception e) {
 			this.setMesg(e.getCause().getMessage());

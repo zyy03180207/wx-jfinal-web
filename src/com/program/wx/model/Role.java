@@ -19,4 +19,9 @@ public class Role extends Model<Role> {
 	public List<Role> findRoleByAll() {
 		return dao.find("SELECT * FROM tb_role");
 	}
+	
+	public Role findRoleByName(String name) {
+		String sql = "SELECT * FROM tb_role WHERE name = ?";
+		return dao.findFirst(sql, name);
+	}
 }

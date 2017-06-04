@@ -50,6 +50,11 @@ public class RoleController extends BaseController {
 				} else {
 					state = "1";
 				}
+				Role role1 = Role.dao.findRoleByName(name);
+				if (role1 != null) {
+					this.setMesg("角色名已存在");
+					return;
+				}
 				Role role = new Role();
 				boolean s = role.set("name", name).set("introduce", introduce).set("state", state).save();
 				if (s) {
@@ -57,6 +62,58 @@ public class RoleController extends BaseController {
 				} else {
 					this.setMesg("添加失败");
 				}
+			}
+		} catch (Exception e) {
+			this.setMesg(e.getCause().getMessage());
+		}
+	}
+
+	public void roleEdit() {
+		try {
+			if (this.reqGet()) {
+				String id = this.getPara("id");
+				Role role = Role.dao.findById(Integer.valueOf(id));
+				this.setAttr("role", role);
+				renderJsp("roleedit.jsp");
+			} else {
+				String id = getPara("id");
+				String name = getPara("name");
+				String introduce = getPara("introduce");
+				if (StringUtil.isEmpty(name)) {
+					this.setMesg("请输入角色名称");
+					return;
+				}
+				if (StringUtil.isEmpty(introduce)) {
+					this.setMesg("请输入角色描述");
+					return;
+				}
+				Role role = Role.dao.findRoleByName(name);
+				if (role != null && role.getInt("id") != Integer.valueOf(id)) {
+					this.setMesg("角色名已存在");
+					return;
+				}
+				Role role2 = new Role();
+				boolean s = role2.set("id", id).set("name", name).set("introduce", introduce).update();
+				if (s) {
+					this.setMesg(true, "修改成功", true);
+				} else {
+					this.setMesg("修改失败");
+				}
+			}
+		} catch (Exception e) {
+			this.setMesg(e.getCause().getMessage());
+		}
+	}
+
+	public void roleDel() {
+		try {
+			String id = this.getPara("id");
+			Role role = new Role();
+			boolean s = role.set("id", Integer.valueOf(id)).delete();
+			if (s) {
+				this.setMesg(true, "删除成功", true);
+			} else {
+				this.setMesg("删除失败");
 			}
 		} catch (Exception e) {
 			this.setMesg(e.getCause().getMessage());
