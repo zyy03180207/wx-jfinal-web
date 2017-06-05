@@ -22,10 +22,6 @@ public class IndexController extends BaseController {
 
 	Logger logger = LoggerUtil.getLogger(IndexController.class);
 
-	public void index() {
-
-	}
-
 	@Clear
 	public void login() {
 		this.getSession().removeAttribute(Global.USER_INFO);
@@ -110,6 +106,16 @@ public class IndexController extends BaseController {
 		AdminUser adminUser = (AdminUser) this.getSession().getAttribute(Global.USER_INFO);
 		this.setAttr("adminUser", adminUser);
 		renderJsp("index.jsp");
+	}
+	
+	@Clear
+	public void error404() {
+		renderJsp("404.jsp");
+	}
+	
+	@Clear
+	public void error500() {
+		renderJsp("500.jsp");
 	}
 
 	public void adminList() {

@@ -59,7 +59,7 @@
 				<td><input type="checkbox" lay-skin="primary"></td>
 				<td>{{ item.id }}</td>
 				<td>{{ item.action }}</td>
-				<td>{{ item.menuName }}</td>
+				<td>{{ item.menu_name }}</td>
 				<td>{{ item.des }}</td>
 				{{# if(item.ismenu==1) { }}
 				<td>是</td>
