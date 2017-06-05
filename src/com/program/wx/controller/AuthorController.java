@@ -78,4 +78,32 @@ public class AuthorController extends BaseController {
 		}
 	}
 
+	public void authorEdit() {
+		try {
+			if (this.reqGet()) {
+				String id = this.getPara("id");
+				Secqurity secqurity = Secqurity.dao.findById(Integer.valueOf(id));
+				this.setAttr("secqurity", secqurity);
+				renderJsp("authoredit.jsp");
+			}else{
+				
+			}
+		} catch (Exception e) {
+			this.setMesg(e.getCause().getMessage());
+		}
+	}
+	
+	public void authorDel() {
+		try {
+			String id = this.getPara("id");
+			boolean s = Secqurity.dao.deleteById(Integer.valueOf(id));
+			if (s) {
+				this.setMesg(true, "删除成功", true);
+			} else {
+				this.setMesg("删除失败");
+			}
+		} catch (Exception e) {
+			this.setMesg(e.getCause().getMessage());
+		}
+	}
 }
