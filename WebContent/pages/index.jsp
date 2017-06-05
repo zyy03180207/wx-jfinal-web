@@ -30,7 +30,7 @@
 			<div class="layui-header header header-demo">
 				<div class="layui-main">
 					<div class="admin-login-box">
-						<a class="logo" style="left: 0;" href="index">
+						<a class="logo" style="left: 0;" href="home">
 							<span style="font-size: 20px;">明日程序管理系统</span>
 						</a>
 						<div class="admin-side-toggle">

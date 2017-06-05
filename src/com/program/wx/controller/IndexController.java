@@ -8,8 +8,10 @@ import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
+import com.jfinal.ext.interceptor.NoUrlPara;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.render.CaptchaRender;
 import com.program.wx.config.Global;
@@ -22,6 +24,12 @@ public class IndexController extends BaseController {
 
 	Logger logger = LoggerUtil.getLogger(IndexController.class);
 
+	@Clear
+	@Before(NoUrlPara.class)
+	public void index() {
+		redirect("/login");
+	}
+	
 	@Clear
 	public void login() {
 		this.getSession().removeAttribute(Global.USER_INFO);

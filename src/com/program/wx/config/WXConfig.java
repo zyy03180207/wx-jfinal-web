@@ -32,8 +32,8 @@ public class WXConfig extends JFinalConfig {
 		PropKit.use("little_config.txt");
 		me.setViewType(ViewType.JSP);
 		me.setDevMode(true);
-		me.setError404View("pages/404.jsp");
-		me.setError500View("pages/500.jsp");
+		me.setError404View("404.jsp");
+		me.setError500View("500.jsp");
 	}
 
 	@Override
