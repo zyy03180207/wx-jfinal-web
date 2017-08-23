@@ -1,22 +1,15 @@
 package com.program.wx.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
-import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.NoUrlPara;
-import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.render.CaptchaRender;
 import com.program.wx.config.Global;
 import com.program.wx.model.AdminUser;
-import com.program.wx.model.Fans;
 import com.program.wx.utils.LoggerUtil;
 import com.program.wx.utils.StringUtil;
 
