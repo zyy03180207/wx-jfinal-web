@@ -130,6 +130,10 @@ public class IndexController extends BaseController {
 	public void roleList() {
 		renderJsp("role/rolelist.jsp");
 	}
+	
+	public void fansList() {
+		renderJsp("fans/fanslist.jsp");
+	}
 
 	@Clear
 	public void randCode() {

@@ -1,0 +1,8 @@
+driverClass = com.mysql.jdbc.Driver
+jdbcUrl = jdbc:mysql://120.55.168.86:3306/wx_manage?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+username = root
+password = zyy0318@:0207
+
+showsql = true
+
+FILE_URL=C://

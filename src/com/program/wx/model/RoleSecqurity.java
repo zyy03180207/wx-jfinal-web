@@ -6,4 +6,9 @@ public class RoleSecqurity extends Model<RoleSecqurity> {
 
 	public static final RoleSecqurity dao = new RoleSecqurity();
 
+	public boolean addSecqurityByRole() {
+		
+		return true;
+	}
+	
 }
