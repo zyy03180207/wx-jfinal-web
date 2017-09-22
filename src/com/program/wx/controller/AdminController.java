@@ -1,11 +1,9 @@
 package com.program.wx.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONArray;
 import com.jfinal.aop.Before;
-import com.jfinal.core.ActionKey;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -13,7 +11,14 @@ import com.program.wx.model.AdminUser;
 import com.program.wx.model.AdminUserRole;
 import com.program.wx.model.Role;
 import com.program.wx.utils.StringUtil;
-
+/**
+ * 管理员功能
+ * @author yangyang.zhang
+ * @Package com.program.wx.controller 
+ * @Date 2017年9月20日 下午5:28:06 
+ * @Description TODO(用一句话描述该文件做什么)
+ * @version V1.0
+ */
 public class AdminController extends BaseController {
 
 	public void index() {

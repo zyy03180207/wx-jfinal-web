@@ -7,7 +7,14 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.program.wx.model.Role;
 import com.program.wx.utils.StringUtil;
-
+/**
+ * 角色管理
+ * @author yangyang.zhang
+ * @Package com.program.wx.controller 
+ * @Date 2017年9月20日 下午5:27:11 
+ * @Description TODO(用一句话描述该文件做什么)
+ * @version V1.0
+ */
 public class RoleController extends BaseController {
 
 	public void index() {

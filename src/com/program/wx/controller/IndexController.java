@@ -12,7 +12,14 @@ import com.program.wx.config.Global;
 import com.program.wx.model.AdminUser;
 import com.program.wx.utils.LoggerUtil;
 import com.program.wx.utils.StringUtil;
-
+/**
+ * 主页功能
+ * @author yangyang.zhang
+ * @Package com.program.wx.controller 
+ * @Date 2017年9月20日 下午5:27:27 
+ * @Description TODO(用一句话描述该文件做什么)
+ * @version V1.0
+ */
 public class IndexController extends BaseController {
 
 	Logger logger = LoggerUtil.getLogger(IndexController.class);

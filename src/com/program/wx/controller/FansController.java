@@ -6,8 +6,14 @@ import com.alibaba.fastjson.JSONArray;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.program.wx.model.Fans;
-import com.program.wx.model.Role;
-
+/**
+ * 粉丝功能
+ * @author yangyang.zhang
+ * @Package com.program.wx.controller 
+ * @Date 2017年9月20日 下午5:27:38 
+ * @Description TODO(用一句话描述该文件做什么)
+ * @version V1.0
+ */
 public class FansController extends BaseController {
 
 	public void index() {
