@@ -126,4 +126,12 @@ public class RoleController extends BaseController {
 			this.setMesg(e.getCause().getMessage());
 		}
 	}
+	
+	public void roleToAuthor() {
+		if (this.reqGet()) {
+			renderJsp("authorofrole.jsp");
+		} else {
+			
+		}
+	}
 }

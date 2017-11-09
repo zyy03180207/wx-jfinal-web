@@ -1,6 +1,5 @@
 package com.program.wx.interceptor;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.plugin.activerecord.Record;
@@ -18,7 +15,6 @@ import com.program.wx.config.Global;
 import com.program.wx.controller.BaseController;
 import com.program.wx.model.AdminUser;
 import com.program.wx.model.Secqurity;
-import com.program.wx.utils.Menu;
 import com.program.wx.utils.MenuUtil;
 
 public class LoginInterceptor implements Interceptor {

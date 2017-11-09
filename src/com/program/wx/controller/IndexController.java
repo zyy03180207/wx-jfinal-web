@@ -109,11 +109,38 @@ public class IndexController extends BaseController {
 	public void main() {
 		renderJsp("main.jsp");
 	}
-
+	/**
+	 * somate
+	 */
 	public void home() {
 		AdminUser adminUser = (AdminUser) this.getSession().getAttribute(Global.USER_INFO);
 		this.setAttr("adminUser", adminUser);
 		renderJsp("index.jsp");
+	}
+	/**
+	 * 博客
+	 */
+	public void blog() {
+		AdminUser adminUser = (AdminUser) this.getSession().getAttribute(Global.USER_INFO);
+		this.setAttr("adminUser", adminUser);
+		renderJsp("blogIndex.jsp");
+	}
+	/**
+	 * 微信
+	 */
+	public void wx() {
+		AdminUser adminUser = (AdminUser) this.getSession().getAttribute(Global.USER_INFO);
+		this.setAttr("adminUser", adminUser);
+		renderJsp("wxIndex.jsp");
+	}
+	
+	/**
+	 * 微信
+	 */
+	public void system() {
+		AdminUser adminUser = (AdminUser) this.getSession().getAttribute(Global.USER_INFO);
+		this.setAttr("adminUser", adminUser);
+		renderJsp("sysIndex.jsp");
 	}
 	
 	@Clear

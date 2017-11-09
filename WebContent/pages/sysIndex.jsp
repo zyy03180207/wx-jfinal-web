@@ -31,7 +31,7 @@
 				<div class="layui-main">
 					<div class="admin-login-box">
 						<a class="logo" style="left: 0;" href="home">
-							<span style="font-size: 20px;">Somates管理系统</span>
+							<span style="font-size: 20px;">管理系统</span>
 						</a>
 						<div class="admin-side-toggle">
 							<i class="fa fa-bars" aria-hidden="true" title="隐藏/显示菜单"></i>
@@ -42,7 +42,7 @@
 					</div>
 					
 					<ul class="layui-nav admin-header-item">
-						<li class="layui-nav-item layui-this">
+						<li class="layui-nav-item">
                  	   	   <a href="home"><i class="iconfont icon-wangzhanguanli"></i>Somate平台</a>
                  	   	</li>
                  	   	<li class="layui-nav-item">
@@ -51,7 +51,7 @@
                  	   	<li class="layui-nav-item">
                  	   	   <a href="wx"><i class="iconfont icon-ht_expand"></i>微信平台</a>
                  	   	</li>
-                 	   	<li class="layui-nav-item">
+                 	   	<li class="layui-nav-item layui-this">
                  	   	   <a href="system"><i class="iconfont icon-ht_expand"></i>系统平台</a>
                  	   	</li>
 						<li class="layui-nav-item">

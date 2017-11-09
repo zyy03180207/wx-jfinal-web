@@ -7,6 +7,10 @@
 		<title></title>
 		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
 		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/table.css" />
+		<link rel="stylesheet" href="css/global.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+		
 	</head>
 
 	<body>
@@ -25,6 +29,23 @@
 				<br/>
 				<p style="color: #01AAED;">子窗体弹出对话框编辑表单的一些建议：如果是处理表单的，建议在子窗口弹出。把背景设置为无，如果只是提示信息，可以在父窗口弹出。</p>
 			</blockquote>
+			
+			<fieldset class="layui-elem-field">
+				<legend>
+					<input type="checkbox" lay-filter="allselector" lay-skin="primary">所有权限
+				</legend>
+				<div class="layui-field-box">
+					<fieldset class="layui-elem-field">
+						<legend>
+							<input type="checkbox" lay-filter="allselector" lay-skin="primary">主页
+						</legend>
+						<div class="layui-field-box">
+							
+						</div>
+					</fieldset>
+				</div>
+			</fieldset>
+			
 			<fieldset class="layui-elem-field">
 				<legend>更新日志</legend>
 				<div class="layui-field-box">
@@ -161,5 +182,6 @@
 			</fieldset>
 		</div>
 	</body>
+<script type="text/javascript" src="plugins/layui/layui.js"></script>
 
 </html>
