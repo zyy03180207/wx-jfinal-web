@@ -45,6 +45,7 @@ public class MenuUtil {
 				Menu menu = new Menu();
 				menu.setId(childMenu.getIntValue("id"));
 				menu.setTitle(childMenu.getString("menu_name"));
+				menu.setPid(childMenu.getIntValue("pid"));
 				menu.setLevel(level);
 				menus.add(menu);
 				for (Menu menu2 : list2) {
@@ -55,6 +56,15 @@ public class MenuUtil {
 		return menus;
 	}
 
+	public static boolean isChild(int id, LinkedList<Menu> menus) {
+		for(Menu menu : menus) {
+			if(menu.getPid() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public static void main(String[] args) {
 		JSONArray jsonArray = new JSONArray();
 		Menu menu1 = new Menu();

@@ -25,4 +25,9 @@ public class Secqurity extends Model<Secqurity> {
 		String sql = "SELECT * FROM tb_secqurity";
 		return Db.find(sql);
 	}
+	
+	public Secqurity findSecByAction(String action) {
+		String sql = "SELECT * FROM tb_secqurity s WHERE s.action = ?";
+		return dao.findFirst(sql, action);
+	}
 }

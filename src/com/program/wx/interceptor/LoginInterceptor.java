@@ -15,6 +15,7 @@ import com.program.wx.config.Global;
 import com.program.wx.controller.BaseController;
 import com.program.wx.model.AdminUser;
 import com.program.wx.model.Secqurity;
+import com.program.wx.utils.Menu;
 import com.program.wx.utils.MenuUtil;
 
 public class LoginInterceptor implements Interceptor {
@@ -27,7 +28,7 @@ public class LoginInterceptor implements Interceptor {
 		HttpSession session = controller.getSession();
 		AdminUser adminUser = (AdminUser) session.getAttribute(Global.USER_INFO);
 		JSONArray secqs = (JSONArray) session.getAttribute(Global.SECQURITIES);
-		LinkedList<Secqurity> menus = (LinkedList<Secqurity>) session.getAttribute(Global.SECQURITYMENU);
+		LinkedList<Menu> menus = (LinkedList<Menu>) session.getAttribute(Global.SECQURITYMENU);
 		// 是否登录验证,先判断是不是login请求，然后在判断是否登录过
 		if (adminUser == null) {
 			controller.redirect("/login");

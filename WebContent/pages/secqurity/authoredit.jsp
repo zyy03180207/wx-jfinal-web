@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.program.wx.entity.Platform"%>
 <%@page import="com.program.wx.model.Secqurity"%>
 <%@page import="com.program.wx.utils.Menu"%>
 <%@page import="com.program.wx.config.Global"%>
@@ -7,15 +9,38 @@
 <%
 	LinkedList<Menu> menus = (LinkedList<Menu>)request.getSession().getAttribute(Global.SECQURITYMENU);
 	Secqurity secqurity = (Secqurity)request.getAttribute("secqurity"); 
+	List<Platform> platforms = (List<Platform>)request.getAttribute("platforms");
 %>
 <div style="margin: 15px;">
 	<form class="layui-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label">所属平台</label>
+			<div class="layui-input-block">
+				<%if(secqurity.getInt("pid") == 0) { %>
+					<select name="platform" lay-verify="required">
+				<%}else{ %>
+					<select name="platform" lay-verify="required" disabled="disabled">
+				<%} %>
+					<%for(Platform pl : platforms){ 
+						if(secqurity.getStr("platform").equals(pl.getPlatform())) {
+					%>
+						<option value="<%=pl.getPlatform() %>" selected="selected"><%=pl.getName() %></option>
+					<%}else{ %>
+						<option value="<%=pl.getPlatform() %>"><%=pl.getName() %></option>
+					<%} }%>
+				</select>
+			</div>
+		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">上级菜单</label>
 			<div class="layui-input-block">
 				<select name="author" lay-verify="required">
 					<option value="-1">作为功能权限</option>
-					<option value="0">作为一级菜单</option>
+					<%if(secqurity.getInt("pid") == 0){ %>
+						<option value="0" selected="selected">作为一级菜单</option>
+					<%} else { %>
+						<option value="0">作为一级菜单</option>
+					<%} %>
 					<%for(Menu menu : menus) { 
 						if(menu.getId() == secqurity.getInt("pid")) {
 					%>

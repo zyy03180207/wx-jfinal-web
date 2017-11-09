@@ -25,6 +25,7 @@
 				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
 					<i class="layui-icon">&#xe615;</i> 搜索
 				</a>
+				<!-- <input id="sec" type="checkbox" lay-filter="allselector" lay-skin="primary"> -->
 			</blockquote>
 			<fieldset class="layui-elem-field">
 				<legend>数据列表</legend>
@@ -185,7 +186,7 @@
 										type: 1,
 										title: '分配权限',
 										content: form,
-										btn: ['保存', '取消'],
+										btn: ['分配', '取消'],
 										shade: false,
 										offset: ['20px', '20%'],
 										area: ['600px', '400px'],
@@ -353,7 +354,7 @@
 						});
 					});
 				});
-
+				
 				/* $('#import').on('click', function() {
 					var that = this;
 					var index = layer.tips('只想提示地精准些', that, { tips: [1, 'white'] });

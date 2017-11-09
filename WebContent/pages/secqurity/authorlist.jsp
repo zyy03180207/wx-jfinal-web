@@ -67,8 +67,8 @@
 				<td>否</td>
 				{{# } }}
 				<td>
-					<a href="javascript:;" data-id="{{ item.id }}" target="_blank" data-opt="child" class="layui-btn layui-btn-normal layui-btn-mini">添加子项</a>
-					<a href="javascript:;" data-id="{{ item.id }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
+					<a href="javascript:;" data-id="{{ item.id }}" data-platform="{{ item.platform }}" target="_blank" data-opt="child" class="layui-btn layui-btn-normal layui-btn-mini">添加子项</a>
+					<a href="javascript:;" data-id="{{ item.id }}" data-platform="{{ item.platform }}" data-opt="edit" class="layui-btn layui-btn-mini">编辑</a>
 					<a href="javascript:;" data-id="{{ item.id }}" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
 				</td>
 			</tr>
@@ -124,7 +124,7 @@
 							var $that = $(this);
 							$that.children('td:last-child').children('a[data-opt=child]').on('click', function() {
 								//添加子菜单权限功能
-								$.get('author/authorAdd?child=' + $(this).data('id'), null, function(form) {
+								$.get('author/authorAdd?child=' + $(this).data('id') + '&platform=' + $(this).data('platform'), null, function(form) {
 									addBoxIndex = layer.open({
 										type: 1,
 										title: '添加菜单权限',
@@ -185,7 +185,7 @@
 								});
 							});
 							$that.children('td:last-child').children('a[data-opt=edit]').on('click', function() {
-								$.get('author/authorEdit?id=' + $(this).data('id'), null, function(form) {
+								$.get('author/authorEdit?id=' + $(this).data('id') + '&platform=' + $(this).data('platform'), null, function(form) {
 									addBoxIndex = layer.open({
 										type: 1,
 										title: '编辑菜单权限',

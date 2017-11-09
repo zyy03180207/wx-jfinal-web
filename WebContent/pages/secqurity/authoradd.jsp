@@ -1,3 +1,5 @@
+<%@page import="com.program.wx.entity.Platform"%>
+<%@page import="java.util.List"%>
 <%@page import="com.program.wx.utils.Menu"%>
 <%@page import="com.program.wx.config.Global"%>
 <%@page import="java.util.LinkedList"%>
@@ -6,9 +8,29 @@
 <%
 	LinkedList<Menu> menus = (LinkedList<Menu>)request.getSession().getAttribute(Global.SECQURITYMENU);
 	Integer child = (Integer)request.getAttribute("child");
+	String platform = (String)request.getAttribute("platform");
+	List<Platform> platforms = (List<Platform>)request.getAttribute("platforms");
 %>
 <div style="margin: 15px;">
 	<form class="layui-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label">所属平台</label>
+			<div class="layui-input-block">
+				<%if(child == -2) { %>
+					<select name="platform" lay-verify="required">
+				<%}else{ %>
+					<select name="platform" lay-verify="required" disabled="disabled">
+				<%} %>
+					<%for(Platform pl : platforms){ 
+						if(platform.equals(pl.getPlatform())) {
+					%>
+						<option value="<%=pl.getPlatform() %>" selected="selected"><%=pl.getName() %></option>
+					<%}else{ %>
+						<option value="<%=pl.getPlatform() %>"><%=pl.getName() %></option>
+					<%} }%>
+				</select>
+			</div>
+		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">上级菜单</label>
 			<div class="layui-input-block">
@@ -55,7 +77,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">是否菜单</label>
 			<div class="layui-input-block">
-				<input type="checkbox" name="switch" lay-skin="switch" lay-verify="required">
+				<input type="checkbox" name="switch" lay-skin="switch" lay-verify="required" checked="checked">
 			</div>
 			<div class="layui-form-mid layui-word-aux">若不是菜单则上级选项无效</div>
 		</div>
