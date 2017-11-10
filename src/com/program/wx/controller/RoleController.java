@@ -1,11 +1,17 @@
 package com.program.wx.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONArray;
+import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import com.program.wx.model.Role;
+import com.program.wx.model.RoleSecqurity;
+import com.program.wx.model.Secqurity;
 import com.program.wx.utils.StringUtil;
 /**
  * 角色管理
@@ -126,12 +132,40 @@ public class RoleController extends BaseController {
 			this.setMesg(e.getCause().getMessage());
 		}
 	}
-	
+	@Before(Tx.class)
 	public void roleToAuthor() {
 		if (this.reqGet()) {
+			String id = getPara("id");
+			List<RoleSecqurity> roleSecqurities = RoleSecqurity.dao.find("SELECT * FROM tb_role_secqurity WHERE rid = ?", id);
+			List<String> list = new ArrayList<>();
+			for(RoleSecqurity rSecqurity : roleSecqurities) {
+				list.add(String.valueOf(rSecqurity.getInt("sid")));
+			}
+			String[] strings = (String[]) list.toArray(new String[list.size()]);
+			this.setAttr("id", id);
+			this.setAttr("list", list);
+			this.setAttr("strs", strings);
 			renderJsp("authorofrole.jsp");
 		} else {
-			
+			try{
+				int id = getParaToInt("id");
+				String sec = getPara("sec");
+				if(StringUtil.isEmpty(sec)) {
+					this.setMesg("请选择要分配的权限");
+					return;
+				}
+				RoleSecqurity.dao.delSecqurityByRoleId(id);
+				String[] strs = sec.split(",");
+				List<RoleSecqurity> modelList = new ArrayList<>();
+				for(int i = 0; i < strs.length; i++) {
+					RoleSecqurity secqurity = new RoleSecqurity().set("rid", id).set("sid", strs[i]);
+					modelList.add(secqurity);
+				}
+				Db.batchSave(modelList, modelList.size()); 
+				this.setMesg(true, "分配成功", true);
+			}catch(Exception e){
+				this.setMesg("分配失敗"+ e.getMessage());
+			}
 		}
 	}
 }

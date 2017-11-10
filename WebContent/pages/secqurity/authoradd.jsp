@@ -40,9 +40,9 @@
 					<%for(Menu menu : menus) { 
 						if(menu.getId() == child) {
 					%>
-						<option value="<%=menu.getId()%>" selected="selected"><%for(int i = 0; i < menu.getLevel(); i++){ %>&nbsp;&nbsp;<% }if(menu.getLevel()!=0){%>└─<%} %><%=menu.getTitle() %></option>
+						<option value="<%=menu.getId()%>" selected="selected"><%for(int i = 0; i < menu.getLevel(); i++){ %>&nbsp;&nbsp;&nbsp;&nbsp;<% }if(menu.getLevel()!=0){%>└─<%} %><%=menu.getTitle() %></option>
 					<%} else { %>
-						<option value="<%=menu.getId()%>"><%for(int i = 0; i < menu.getLevel(); i++){ %>&nbsp;&nbsp;<% }if(menu.getLevel()!=0){%>└─<%} %><%=menu.getTitle() %></option>
+						<option value="<%=menu.getId()%>"><%for(int i = 0; i < menu.getLevel(); i++){ %>&nbsp;&nbsp;&nbsp;&nbsp;<% }if(menu.getLevel()!=0){%>└─<%} %><%=menu.getTitle() %></option>
 					<%}} %>
 				</select>
 			</div>

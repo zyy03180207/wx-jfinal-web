@@ -25,7 +25,6 @@
 				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
 					<i class="layui-icon">&#xe615;</i> 搜索
 				</a>
-				<!-- <input id="sec" type="checkbox" lay-filter="allselector" lay-skin="primary"> -->
 			</blockquote>
 			<fieldset class="layui-elem-field">
 				<legend>数据列表</legend>
@@ -181,7 +180,7 @@
 							$that.children('td:last-child').children('a[data-opt=fen]').on('click', function() {
 								/* layer.msg($(this).data('name')); */
 								//本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
-								$.get('role/roleToAuthor', null, function(form) {
+								$.get('role/roleToAuthor?id=' + $(this).data('id'), null, function(form) {
 									addBoxIndex = layer.open({
 										type: 1,
 										title: '分配权限',
@@ -216,18 +215,23 @@
 												console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
 												console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
 												//调用父窗口的layer对象
-												layerTips.open({
-													title: '这里面是表单的信息',
-													type: 1,
-													content: JSON.stringify(data.field),
-													area: ['500px', '300px'],
-													btn: ['关闭并刷新', '关闭'],
-													yes: function(index, layero) {
-														layerTips.msg('你点击了关闭并刷新');
-														layerTips.close(index);
-														location.reload(); //刷新
+												$.ajax({
+													type:"POST",
+													url:"role/roleToAuthor",
+													dataType:"json",
+													data: data.field,
+													success:function(data) {
+														if(data.succ) {
+															layerTips.msg(data.mesg, {icon: 6});
+															layerTips.close(index);
+															location.reload(); //刷新
+														} else {
+															layerTips.msg(data.mesg, {icon: 5});
+														}
+													},
+													error:function(){
+														layerTips.msg(data.mesg, {icon: 5});
 													}
-
 												});
 												//这里可以写ajax方法提交表单
 												return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。									
