@@ -9,6 +9,7 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
+import com.program.wx.model.AdminUserRole;
 import com.program.wx.model.Role;
 import com.program.wx.model.RoleSecqurity;
 import com.program.wx.model.Secqurity;
@@ -117,19 +118,28 @@ public class RoleController extends BaseController {
 			this.setMesg(e.getCause().getMessage());
 		}
 	}
-
+	@Before(Tx.class)
 	public void roleDel() {
 		try {
-			String id = this.getPara("id");
-			Role role = new Role();
-			boolean s = role.set("id", Integer.valueOf(id)).delete();
-			if (s) {
-				this.setMesg(true, "删除成功", true);
-			} else {
-				this.setMesg("删除失败");
+			String idStr = this.getPara("id");
+			if (StringUtil.isEmpty(idStr)) {
+				this.setMesg("请选择要删除的角色");
+				return;
 			}
+			String[] ids = null;
+			if (idStr.contains(",")) {
+				idStr = idStr.substring(0, idStr.length() - 1);
+				ids = idStr.split(",");
+			} else {
+				ids = new String[] { idStr };
+			}
+			for(int i = 0 ; i < ids.length; i++) {
+				Role.dao.deleteById(Integer.valueOf(ids[i]));
+				AdminUserRole.dao.delRoleByRId(Integer.valueOf(ids[i]));
+			}
+			this.setMesg(true, "删除成功", true);
 		} catch (Exception e) {
-			this.setMesg(e.getCause().getMessage());
+			this.setMesg("删除失败"+e.getCause().getMessage());
 		}
 	}
 	@Before(Tx.class)

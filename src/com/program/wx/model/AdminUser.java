@@ -22,7 +22,7 @@ public class AdminUser extends Model<AdminUser> {
 	}
 	
 	public Record findUserById(int id) {
-		String sql = "SELECT * FROM tb_admin_user t,tb_user_role r WHERE t.id = r.uid AND t.id = ?";
+		String sql = "SELECT * FROM tb_admin_user t LEFT JOIN tb_user_role r ON t.id = r.uid WHERE t.id = ?";
 		return Db.findFirst(sql, id);
 	}
 }

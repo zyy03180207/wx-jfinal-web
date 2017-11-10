@@ -68,8 +68,8 @@
 				<td>{{ item.username }}</td>
 				<td>{{ item.phone }}</td>
 				<td>{{ item.email }}</td>
-				{{# if(item.rname=="") { }}
-				<td>未添加</td>
+				{{# if(item.rname==""||item.rname==null) { }}
+				<td>未分配</td>
 				{{# } else { }}
 				<td>{{ item.rname }}</td>
 				{{# } }}
@@ -344,6 +344,7 @@
 							layer.msg('的确很重要', {icon: 1});
 					});
 				});
+				
 				//批量开启
 				$('#getStart').on('click', function() {
 					var names = '';

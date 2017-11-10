@@ -19,7 +19,7 @@
 				<a href="javascript:;" class="layui-btn layui-btn-small" id="add">
 					<i class="layui-icon">&#xe608;</i> 添加角色
 				</a>
-				<a href="#" class="layui-btn layui-btn-small" id="getSelected">
+				<a href="#" class="layui-btn layui-btn-small" id="getDel">
 					<i class="fa fa-shopping-cart" aria-hidden="true"></i> 批量删除
 				</a>
 				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
@@ -275,18 +275,40 @@
 
 					},
 				});
-				//获取所有选择的列
-				$('#getSelected').on('click', function() {
+				//删除批量
+				$('#getDel').on('click', function() {
 					var names = '';
 					$('#content').children('tr').each(function() {
 						var $that = $(this);
 						var $cbx = $that.children('td').eq(0).children('input[type=checkbox]')[0].checked;
 						if($cbx) {
-							var n = $that.children('td:last-child').children('a[data-opt=edit]').data('name');
+							var n = $that.children('td:last-child').children('a[data-opt=edit]').data('id');
 							names += n + ',';
 						}
 					});
-					layer.msg('你选择的名称有：' + names);
+					layer.confirm('确认要删除所选择的权限吗，此操作是不可逆的？', {
+						  btn: ['确认','取消'] //按钮
+						}, function(){
+							$.ajax({
+								type:"POST",
+								url:"role/roleDel",
+								dataType:"json",
+								data: {"id":names},
+								success:function(data) {
+									if(data.succ) {
+										layerTips.msg(data.mesg, {icon: 6});
+										location.reload(); //刷新
+									} else {
+										layerTips.msg(data.mesg, {icon: 5});
+									}
+								},
+								error:function(){
+									layerTips.msg(data.mesg, {icon: 5});
+								}
+							});
+						}, function(){
+							layer.msg('的确很重要', {icon: 1});
+					});
 				});
 
 				$('#search').on('click', function() {

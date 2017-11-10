@@ -14,4 +14,12 @@ public class AdminUserRole extends Model<AdminUserRole> {
 	public void updUserRoleByUid(int uid, int rid) {
 		Db.update("UPDATE tb_user_role SET rid = ? WHERE uid = ?", rid, uid);
 	}
+	
+	public void delRoleByRId(int rid) {
+		Db.update("DELETE FROM tb_user_role WHERE rid = ?", rid);
+	}
+	
+	public void delRoleByUserId(int uid) {
+		Db.update("DELETE FROM tb_user_role WHERE uid = ?", uid);
+	}
 }

@@ -188,18 +188,29 @@ public class AuthorController extends BaseController {
 			this.setMesg(e.getCause().getMessage());
 		}
 	}
-	
+	@Before(Tx.class)
 	public void authorDel() {
 		try {
-			String id = this.getPara("id");
-			boolean s = Secqurity.dao.deleteById(Integer.valueOf(id));
-			if (s) {
-				this.setMesg(true, "删除成功", true);
-			} else {
-				this.setMesg("删除失败");
+			String idStr = this.getPara("id");
+			if (StringUtil.isEmpty(idStr)) {
+				this.setMesg("请选择要删除的权限");
+				return;
 			}
+			String[] ids = null;
+			if (idStr.contains(",")) {
+				idStr = idStr.substring(0, idStr.length() - 1);
+				ids = idStr.split(",");
+			} else {
+				ids = new String[] { idStr };
+			}
+			for(int i = 0 ; i < ids.length; i++) {
+				Secqurity.dao.deleteById(Integer.valueOf(ids[i]));
+				//删除所有与该权限关联的角色关系
+				RoleSecqurity.dao.delSecqurityBySId(Integer.valueOf(ids[i]));
+			}
+			this.setMesg(true, "删除成功", true);
 		} catch (Exception e) {
-			this.setMesg(e.getCause().getMessage());
+			this.setMesg("删除失败"+e.getCause().getMessage());
 		}
 	}
 }

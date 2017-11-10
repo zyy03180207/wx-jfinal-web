@@ -40,6 +40,7 @@
 			<label class="layui-form-label">选择角色</label>
 			<div class="layui-input-block">
 				<select name="role" lay-verify="required">
+					<option value="0" selected>未分配</option>
 					<%for(Role role : roles) { 
 						if(role.getInt("id") == adminUser.getInt("rid")){%>
 						<option value="<%=role.getInt("id")%>" selected><%=role.getStr("name")%></option>

@@ -152,6 +152,8 @@ public class AdminController extends BaseController {
 			for (int i = 0; i < ids.length; i++) {
 				AdminUser adminUser = new AdminUser();
 				adminUser.set("id", ids[i]).delete();
+				//删掉是所有与该用户关联的角色关系
+				AdminUserRole.dao.delRoleByUserId(Integer.valueOf(ids[i]));
 			}
 			this.setMesg(true, "操作成功", true);
 		} catch (Exception e) {

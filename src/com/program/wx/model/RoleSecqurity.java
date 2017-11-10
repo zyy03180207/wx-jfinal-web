@@ -18,4 +18,9 @@ public class RoleSecqurity extends Model<RoleSecqurity> {
 		String sql = "DELETE FROM tb_role_secqurity where rid = ?";
 		Db.update(sql, rid); 
 	}
+	
+	public void delSecqurityBySId(int sid) {
+		String sql = "DELETE FROM tb_role_secqurity where sid = ?";
+		Db.update(sql, sid); 
+	}
 }	
