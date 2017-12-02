@@ -22,9 +22,9 @@
 				<a href="#" class="layui-btn layui-btn-small" id="getDel">
 					<i class="fa fa-shopping-cart" aria-hidden="true"></i> 批量删除
 				</a>
-				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+				<!-- <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
 					<i class="layui-icon">&#xe615;</i> 搜索
-				</a>
+				</a> -->
 			</blockquote>
 			<fieldset class="layui-elem-field">
 				<legend>数据列表</legend>

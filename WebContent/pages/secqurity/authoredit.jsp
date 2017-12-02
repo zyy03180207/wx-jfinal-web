@@ -16,13 +16,19 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">所属平台</label>
 			<div class="layui-input-block">
+				
 				<%if(secqurity.getInt("pid") == 0) { %>
 					<select name="platform" lay-verify="required">
 				<%}else{ %>
 					<select name="platform" lay-verify="required" disabled="disabled">
 				<%} %>
+					<%if(secqurity.getStr("platform") == null) { %>
+						<option value="" selected="selected">未分配</option>
+					<%}else{ %>
+						<option value="">未分配</option>
+					<%} %>
 					<%for(Platform pl : platforms){ 
-						if(secqurity.getStr("platform").equals(pl.getPlatform())) {
+						if(pl.getPlatform().equals(secqurity.getStr("platform"))) {
 					%>
 						<option value="<%=pl.getPlatform() %>" selected="selected"><%=pl.getName() %></option>
 					<%}else{ %>

@@ -173,6 +173,7 @@ public class AuthorController extends BaseController {
 						secqurity.set("platform", p.getStr("platform"));
 					} else {
 						secqurity.set("platform", platform);
+						Secqurity.dao.updateSecByPid(id, platform);
 					}
 					boolean s = secqurity.update();
 					if(s) {

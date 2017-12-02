@@ -30,4 +30,9 @@ public class Secqurity extends Model<Secqurity> {
 		String sql = "SELECT * FROM tb_secqurity s WHERE s.action = ?";
 		return dao.findFirst(sql, action);
 	}
+	
+	public void updateSecByPid(String pid, String platform) {
+		String sql = "UPDATE tb_secqurity s set s.platform = ? WHERE s.pid = ?";
+		Db.update(sql, platform, pid);
+	}
 }
