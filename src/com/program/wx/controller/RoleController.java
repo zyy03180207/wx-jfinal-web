@@ -136,6 +136,7 @@ public class RoleController extends BaseController {
 			for(int i = 0 ; i < ids.length; i++) {
 				Role.dao.deleteById(Integer.valueOf(ids[i]));
 				AdminUserRole.dao.delRoleByRId(Integer.valueOf(ids[i]));
+				RoleSecqurity.dao.delSecqurityByRoleId(Integer.valueOf(ids[i]));
 			}
 			this.setMesg(true, "删除成功", true);
 		} catch (Exception e) {
